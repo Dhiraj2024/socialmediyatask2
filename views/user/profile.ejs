@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= user.username %>'s Profile</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <%- include('../partials/navbar') %>
+  
+  <div class="container">
+    <%- include('../partials/flash') %>
+    
+    <div class="profile-header">
+      <img src="<%= user.profilePhoto %>" alt="<%= user.username %>" class="profile-photo">
+      <div class="profile-info">
+        <h1><%= user.username %></h1>
+        <p class="bio"><%= user.bio || 'No bio yet' %></p>
+        
+        <div class="profile-stats">
+          <span><strong><%= posts.length %></strong> Posts</span>
+          <span><strong><%= user.followers.length %></strong> Followers</span>
+          <span><strong><%= user.following.length %></strong> Following</span>
+        </div>
+        
+        <div class="profile-actions">
+          <% if (isOwnProfile) { %>
+            <a href="/user/edit" class="btn btn-secondary">Edit Profile</a>
+          <% } else { %>
+            <button class="btn btn-primary follow-btn" data-user-id="<%= user._id %>">
+              <%= isFollowing ? 'Unfollow' : 'Follow' %>
+            </button>
+          <% } %>
+        </div>
+      </div>
+    </div>
+    
+    <div class="profile-posts">
+      <h2>Posts</h2>
+      <% if (posts.length === 0) { %>
+        <p class="no-posts">No posts yet</p>
+      <% } else { %>
+        <% posts.forEach(post => { %>
+          <%- include('../partials/post-card', { post }) %>
+        <% }) %>
+      <% } %>
+    </div>
+  </div>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

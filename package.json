@@ -1,0 +1,30 @@
+{
+  "name": "mini-social-media-app",
+  "version": "1.0.0",
+  "description": "A mini social media application built with Node.js, Express, MongoDB, and EJS",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "keywords": ["social-media", "express", "mongodb", "mvc"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^8.0.0",
+    "ejs": "^3.1.9",
+    "express-session": "^1.17.3",
+    "connect-mongo": "^5.1.0",
+    "connect-flash": "^0.1.1",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
+    "bcrypt": "^5.1.1",
+    "multer": "^1.4.5-lts.1",
+    "dotenv": "^16.3.1",
+    "method-override": "^3.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

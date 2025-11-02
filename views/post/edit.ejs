@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Post</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <%- include('../partials/navbar') %>
+  
+  <div class="container">
+    <%- include('../partials/flash') %>
+    
+    <div class="form-container">
+      <h1>Edit Post</h1>
+      <form action="/post/<%= post._id %>/edit" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="content">Content</label>
+          <textarea id="content" name="content" rows="6" required maxlength="2000"><%= post.content %></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label for="postImage">Change Image (optional)</label>
+          <input type="file" id="postImage" name="postImage" accept="image/*">
+          <% if (post.image) { %>
+            <small>Current image: <img src="<%= post.image %>" alt="Current" class="current-photo"></small>
+          <% } %>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Update Post</button>
+        <a href="/feed" class="btn btn-secondary">Cancel</a>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

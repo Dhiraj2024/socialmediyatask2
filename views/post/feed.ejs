@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feed - Mini Social Media</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <%- include('../partials/navbar') %>
+  
+  <div class="container">
+    <%- include('../partials/flash') %>
+    
+    <div class="feed">
+      <h1>Feed</h1>
+      
+      <% if (posts.length === 0) { %>
+        <div class="no-posts">
+          <p>No posts to show. Follow some users to see their posts!</p>
+          <a href="/post/create" class="btn btn-primary">Create Your First Post</a>
+        </div>
+      <% } else { %>
+        <% posts.forEach(post => { %>
+          <%- include('../partials/post-card', { post }) %>
+        <% }) %>
+      <% } %>
+    </div>
+  </div>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Profile</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <%- include('../partials/navbar') %>
+  
+  <div class="container">
+    <%- include('../partials/flash') %>
+    
+    <div class="form-container">
+      <h1>Edit Profile</h1>
+      <form action="/user/edit" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" value="<%= user.username %>" required minlength="3">
+        </div>
+        
+        <div class="form-group">
+          <label for="bio">Bio</label>
+          <textarea id="bio" name="bio" rows="4" maxlength="500"><%= user.bio %></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label for="profilePhoto">Profile Photo</label>
+          <input type="file" id="profilePhoto" name="profilePhoto" accept="image/*">
+          <small>Current photo: <img src="<%= user.profilePhoto %>" alt="Current" class="current-photo"></small>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Update Profile</button>
+        <a href="/user/<%= user._id %>" class="btn btn-secondary">Cancel</a>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

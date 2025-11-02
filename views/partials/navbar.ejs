@@ -1,0 +1,22 @@
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="/feed" class="nav-brand">Mini Social</a>
+    
+    <% if (currentUser) { %>
+      <div class="nav-links">
+        <a href="/feed" class="nav-link">Home</a>
+        <a href="/post/create" class="nav-link">Create Post</a>
+        <a href="/user/<%= currentUser._id %>" class="nav-link">
+          <img src="<%= currentUser.profilePhoto %>" alt="Profile" class="nav-avatar">
+          <%= currentUser.username %>
+        </a>
+        <a href="/auth/logout" class="nav-link">Logout</a>
+      </div>
+    <% } else { %>
+      <div class="nav-links">
+        <a href="/auth/login" class="nav-link">Login</a>
+        <a href="/auth/register" class="nav-link">Register</a>
+      </div>
+    <% } %>
+  </div>
+</nav>
