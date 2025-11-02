@@ -9,7 +9,7 @@ const methodOverride = require('method-override');
 const path = require('path');
 
 const connectDB = require('./config/database');
-const { setCurrentUser } = require('./middleware/auth');
+const { setCurrentUser, ensureAuthenticated } = require('./middleware/auth');
 const ExpressError = require('./utils/ExpressError');
 
 const authRoutes = require('./routes/authRoutes');
@@ -58,7 +58,7 @@ app.get('/', (req, res) => {
 app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
 app.use('/post', postRoutes);
-app.get('/feed', postController.getFeed);
+app.get('/feed', ensureAuthenticated, postController.getFeed);
 
 app.all('*', (req, res, next) => {
   next(new ExpressError('Page Not Found', 404));

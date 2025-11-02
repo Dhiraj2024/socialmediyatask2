@@ -82,7 +82,7 @@ exports.followUser = async (req, res) => {
       return res.status(400).json({ success: false, message: 'Cannot follow yourself' });
     }
 
-    const isFollowing = currentUser.following.includes(userToFollow._id);
+    const isFollowing = currentUser.following.some(id => id.equals(userToFollow._id));
 
     if (isFollowing) {
       currentUser.following.pull(userToFollow._id);

@@ -139,7 +139,7 @@ exports.likePost = async (req, res) => {
       return res.status(404).json({ success: false, message: 'Post not found' });
     }
 
-    const userIndex = post.likes.indexOf(req.user._id);
+    const userIndex = post.likes.findIndex(id => id.equals(req.user._id));
 
     if (userIndex > -1) {
       post.likes.splice(userIndex, 1);
